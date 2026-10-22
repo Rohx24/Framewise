@@ -1,6 +1,10 @@
-# framewise
+# Framewise
 
-Coding agents can't read video. These two skills let them.
+Two skills that let your coding agent watch a video. 
+
+**Turn a screen recording into the story of a bug: what happened, what it led to, and where it broke.**
+
+Framewise reads every frame and gives your coding agent a timestamped sequence of events, so it can trace a bug from the first click to the final failure instead of guessing from one screenshot.
 
 | | |
 | --- | --- |
