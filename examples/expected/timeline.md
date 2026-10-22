@@ -34,13 +34,25 @@
 
 ![just before local-change at 3.00s](frames/t002_950.jpg)
 
+Close-up of the region that changed:
+
+![just before local-change at 3.00s close-up](frames/t002_950_zoom.jpg)
+
 ### `3.15s` — just before local-change at 3.20s
 
 ![just before local-change at 3.20s](frames/t003_150.jpg)
 
+Close-up of the region that changed:
+
+![just before local-change at 3.20s close-up](frames/t003_150_zoom.jpg)
+
 ### `3.30s` — start of busy-indicator (3.30s)
 
 ![start of busy-indicator (3.30s)](frames/t003_300.jpg)
+
+Close-up of the region that changed:
+
+![start of busy-indicator (3.30s) close-up](frames/t003_300_zoom.jpg)
 
 ### `11.97s` — last frame
 
@@ -53,6 +65,10 @@ reports *what changed, where, and for how long* -- it does not know what
 any of it means. Names like `busy-indicator` describe a visual pattern
 (something animating in one small place while everything else holds still),
 not a diagnosis.
+
+Where a close-up follows a frame, it is the region that changed, magnified
+from the full-resolution video. Judge small visual defects -- alignment,
+spacing, clipping, wrong state -- from the close-up, not the full frame.
 
 To turn this into an explanation, read the key frames against the timeline.
 The frames tell you what the UI is; the timeline tells you when it moved.

@@ -25,16 +25,33 @@ git clone https://github.com/Rohx24/framewise
 cd framewise && pip install -r requirements.txt && ./install.sh
 ```
 
-Needs `ffmpeg` on PATH. Installs `/watch` and `/replicate`.
+Needs Python 3, `ffmpeg` on PATH, `numpy` and `opencv-python`. Installs
+`/watch` into `~/.claude/skills/watch` and `/replicate` into
+`~/.claude/skills/replicate`; pass a directory to `./install.sh` to install
+somewhere else. To update, `git pull && ./install.sh`.
 
-Try it without a recording:
+Narration in a recording is transcribed if `openai-whisper` is installed
+(`pip install openai-whisper`). Without it everything else still runs.
+
+Try it without a recording — the sample is already in the repo, and
+`examples/expected/` holds the output it should produce:
 
 ```bash
-python3 examples/make_sample.py examples/sample_bug.mp4
 python3 scripts/analyze.py examples/sample_bug.mp4 -o /tmp/demo --no-audio
 ```
 
 ## /watch
+
+```bash
+python3 scripts/analyze.py recording.mov -o repro/
+```
+
+| flag | why |
+| --- | --- |
+| `--frames N` | more or fewer key frames (default 12) |
+| `--max-seconds N` | only analyse the first N seconds of a long recording |
+| `--no-audio` | skip transcription (faster; avoids a model download) |
+| `--whisper-model small` | better narration accuracy, slower (default `base`) |
 
 360 frames become 5 events and 7 key frames:
 
@@ -81,6 +98,12 @@ A recording is states and transitions, and they need different treatment.
 python3 scripts/replicate.py clip.mov -o rebuild/
 python3 scripts/replicate.py clip.mov --from 6.3 --to 7.3 -o rebuild/
 ```
+
+| flag | why |
+| --- | --- |
+| `--from`, `--to` | measure one moment, in seconds |
+| `--frames N` | denser sampling of each transition (default 20) |
+| `--max-states`, `--max-transitions` | caps for a long recording (default 8 and 6) |
 
 `examples/make_motion_sample.py` renders a circle scaling on a cubic
 ease-out over 600ms. `replicate` isn't told:
@@ -150,7 +173,12 @@ become a success banner. Deltas compare colour channels.
 ## Output
 
 Plain Markdown plus JPEGs, carrying their own reading instructions. Works in
-any assistant with vision. `events.json` holds the same data for scripts.
+any assistant with vision.
+
+| skill | writes |
+| --- | --- |
+| `/watch` | `timeline.md`, `frames/` (key frames and `_zoom` crops), `events.json` with the same data for scripts |
+| `/replicate` | `rebuild.md`, `states/` (full-resolution frames), `motion/` (transition samples) |
 
 A 2-minute 1080p recording takes about 20 seconds — roughly 6× faster than
 watching it. Decoding dominates, so resolution barely matters.
@@ -179,6 +207,15 @@ and an ease-out truncated until it read as linear.
   1px borders are inference.
 - Tuned for screen recordings. Camera footage and video playback read as
   continuously busy.
+
+## Recording on macOS
+
+A recording dragged into the chat straight from the floating thumbnail
+lives in a private `NSIRD_screencaptureui_` folder that no other process
+can read, so analysis fails with "Operation not permitted". Let the
+thumbnail disappear so the file saves to the Desktop, and use that copy. To
+stop it happening: Cmd+Shift+5 → Options → turn off "Show Floating
+Thumbnail".
 
 ## License
 

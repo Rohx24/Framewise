@@ -65,37 +65,44 @@
     {
       "t": 0.0,
       "label": "first frame",
-      "path": "frames/t000_000.jpg"
+      "path": "frames/t000_000.jpg",
+      "closeup": null
     },
     {
       "t": 0.833,
       "label": "start of scroll (0.83s)",
-      "path": "frames/t000_833.jpg"
+      "path": "frames/t000_833.jpg",
+      "closeup": null
     },
     {
       "t": 1.6,
       "label": "end of scroll (1.60s)",
-      "path": "frames/t001_600.jpg"
+      "path": "frames/t001_600.jpg",
+      "closeup": null
     },
     {
       "t": 2.95,
       "label": "just before local-change at 3.00s",
-      "path": "frames/t002_950.jpg"
+      "path": "frames/t002_950.jpg",
+      "closeup": "frames/t002_950_zoom.jpg"
     },
     {
       "t": 3.15,
       "label": "just before local-change at 3.20s",
-      "path": "frames/t003_150.jpg"
+      "path": "frames/t003_150.jpg",
+      "closeup": "frames/t003_150_zoom.jpg"
     },
     {
       "t": 3.3,
       "label": "start of busy-indicator (3.30s)",
-      "path": "frames/t003_300.jpg"
+      "path": "frames/t003_300.jpg",
+      "closeup": "frames/t003_300_zoom.jpg"
     },
     {
       "t": 11.967,
       "label": "last frame",
-      "path": "frames/t011_967.jpg"
+      "path": "frames/t011_967.jpg",
+      "closeup": null
     }
   ]
 }
